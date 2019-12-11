@@ -19,7 +19,7 @@ public class RecordAnalyticService {
     private SessionFactory sessionFactory;
 
     public String androidQuery(int record_id) {
-        return "SELECT COUNT(*) FROM correct_requests WHERE uid_id IN (" + getUidIds(record_id) + ") AND" +
+        return "SELECT COUNT(*) FROM correct_requests WHERE uid_id IN (" + getUidIds(record_id) + ") AND " +
                 "device_id IN (SELECT id FROM devices WHERE " +
                 "name='Samsung phone' OR name='Sony phone' OR name='Asus phone' OR name='Xiomi phone' OR " +
                 "name='Samsung tablet' OR name='Sony tablet' or name='Asus tablet' or " +
