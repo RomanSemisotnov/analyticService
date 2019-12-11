@@ -18,7 +18,6 @@ public class RecordAnalyticService {
     @Autowired
     private SessionFactory sessionFactory;
 
-
     public String androidQuery(int record_id) {
         return "SELECT COUNT(*) FROM correct_requests WHERE uid_id IN (" + getUidIds(record_id) + ") AND" +
                 "device_id IN (SELECT id FROM devices WHERE " +
@@ -66,4 +65,5 @@ public class RecordAnalyticService {
         query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
         return query.list();
     }
+
 }

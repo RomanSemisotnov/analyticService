@@ -16,8 +16,8 @@ public class RecordAnalyticController {
 
     @GetMapping("/{record_id}")
     public List<Map<String, Object>> all(@PathVariable int record_id,
-                   @RequestParam(name = "from", required = false) String from,
-                   @RequestParam(name = "to", required = false) String to) {
+                                         @RequestParam(name = "from", required = false) String from,
+                                         @RequestParam(name = "to", required = false) String to) {
 
         return recordAnalyticService.all(record_id);
     }
