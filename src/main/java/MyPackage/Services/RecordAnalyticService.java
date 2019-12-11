@@ -44,7 +44,7 @@ public class RecordAnalyticService {
     }
 
     public String getUidIds(int record_id) {
-        return "Select id FROM Uids WHERE record_id=" + record_id;
+        return "Select id FROM uids WHERE record_id=" + record_id;
     }
 
     public List<Map<String, Object>> all(Integer record_id) {
