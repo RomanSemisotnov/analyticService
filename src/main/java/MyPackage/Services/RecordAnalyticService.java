@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional
@@ -47,14 +46,14 @@ public class RecordAnalyticService {
         return "Select id FROM Uids WHERE record_id=" + record_id;
     }
 
-    public List<Map<String, Object>> all(Integer record_id) {
+    public List all(Integer record_id) {
         Session session = sessionFactory.getCurrentSession();
         NativeQuery nQuery = session.createSQLQuery(commonQuery(record_id));
         nQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
         return nQuery.list();
     }
 
-    public List<Map<String, Object>> get(Integer id) {
+    public List get(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         NativeQuery query = session.createSQLQuery("SELECT uids.value as 'uid_value', \n" +
                 "(SELECT COUNT(*) FROM correct_requests WHERE correct_requests.uid_id=uids.id) as request_count, \n" +
