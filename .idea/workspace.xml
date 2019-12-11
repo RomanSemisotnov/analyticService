@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e7b9891-75b6-45f1-b5e3-7de94e401fbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/RecordAnalyticController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/RecordAnalyticController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/RecordAnalyticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/RecordAnalyticService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MyPackage/Services/RecordAnalyticService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MyPackage/Services/RecordAnalyticService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -129,8 +129,16 @@
       <workItem from="1575980631205" duration="2076000" />
       <workItem from="1575994599362" duration="13679000" />
       <workItem from="1576079882503" duration="34000" />
-      <workItem from="1576085344543" duration="1349000" />
+      <workItem from="1576085344543" duration="4010000" />
     </task>
+    <task id="LOCAL-00001" summary="qwe">
+      <created>1576088467396</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1576088467397</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,5 +154,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="qwe" />
+    <option name="LAST_COMMIT_MESSAGE" value="qwe" />
   </component>
 </project>
