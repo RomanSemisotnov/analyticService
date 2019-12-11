@@ -53,7 +53,7 @@ public class RecordAnalyticService {
         return commonQuery(record_id);
     }
 
-    public List get(Integer id) {
+    public String get(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         NativeQuery query = session.createSQLQuery("SELECT uids.value as 'uid_value', \n" +
                 "(SELECT COUNT(*) FROM correct_requests WHERE correct_requests.uid_id=uids.id) as request_count, \n" +
@@ -62,7 +62,12 @@ public class RecordAnalyticService {
                 "(SELECT COUNT(*) FROM correct_requests WHERE uid_id=uids.id AND device_id IN (SELECT id FROM devices WHERE (name='Another phone' OR name='Another tablet' OR name = 'unknown'))) as unknown_count \n" +
                 "FROM records r INNER JOIN uids ON r.id=uids.record_id WHERE r.id=" + id);
         query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
-        return query.list();
+        return "SELECT uids.value as 'uid_value', \n" +
+                "(SELECT COUNT(*) FROM correct_requests WHERE correct_requests.uid_id=uids.id) as request_count, \n" +
+                "(SELECT COUNT(*) FROM correct_requests WHERE uid_id=uids.id AND device_id IN (SELECT id FROM devices WHERE (name='Samsung phone' OR name='Sony phone' OR name='Asus phone' OR name='Xiomi phone' OR name='Samsung tablet' OR name='Sony tablet' or name='Asus tablet' or name = 'Xiomi tablet'))) as android_count, \n" +
+                "(SELECT COUNT(*) FROM correct_requests WHERE uid_id=uids.id AND device_id IN (SELECT id FROM devices WHERE (name='Iphone' OR name='Ipad'))) as ios_count, \n" +
+                "(SELECT COUNT(*) FROM correct_requests WHERE uid_id=uids.id AND device_id IN (SELECT id FROM devices WHERE (name='Another phone' OR name='Another tablet' OR name = 'unknown'))) as unknown_count \n" +
+                "FROM records r INNER JOIN uids ON r.id=uids.record_id WHERE r.id=" + id;
     }
 
 }

@@ -22,7 +22,7 @@ public class RecordAnalyticController {
     }
 
     @GetMapping("/{record_id}/withUid")
-    public List get(@PathVariable int record_id,
+    public String get(@PathVariable int record_id,
                     @RequestParam(name = "from", required = false) String from,
                     @RequestParam(name = "to", required = false) String to) {
 
