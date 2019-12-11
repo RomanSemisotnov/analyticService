@@ -46,11 +46,11 @@ public class RecordAnalyticService {
         return "Select id FROM Uids WHERE record_id=" + record_id;
     }
 
-    public List all(Integer record_id) {
+    public String all(Integer record_id) {
         Session session = sessionFactory.getCurrentSession();
         NativeQuery nQuery = session.createSQLQuery(commonQuery(record_id));
         nQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
-        return nQuery.list();
+        return commonQuery(record_id);
     }
 
     public List get(Integer id) {
