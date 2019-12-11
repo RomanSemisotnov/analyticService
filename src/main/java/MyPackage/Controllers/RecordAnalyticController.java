@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/recordAnalytics")
@@ -14,17 +15,17 @@ public class RecordAnalyticController {
     private RecordAnalyticService recordAnalyticService;
 
     @GetMapping("/{record_id}")
-    public String all(@PathVariable int record_id,
-                    @RequestParam(name = "from", required = false) String from,
-                    @RequestParam(name = "to", required = false) String to) {
+    public List<Map<String, Object>> all(@PathVariable int record_id,
+                                         @RequestParam(name = "from", required = false) String from,
+                                         @RequestParam(name = "to", required = false) String to) {
 
         return recordAnalyticService.all(record_id);
     }
 
     @GetMapping("/{record_id}/withUid")
-    public String get(@PathVariable int record_id,
-                    @RequestParam(name = "from", required = false) String from,
-                    @RequestParam(name = "to", required = false) String to) {
+    public List<Map<String, Object>> get(@PathVariable int record_id,
+                                         @RequestParam(name = "from", required = false) String from,
+                                         @RequestParam(name = "to", required = false) String to) {
 
         return recordAnalyticService.get(record_id);
     }
