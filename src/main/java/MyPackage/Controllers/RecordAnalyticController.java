@@ -15,19 +15,19 @@ public class RecordAnalyticController {
     private RecordAnalyticService recordAnalyticService;
 
     @GetMapping("/{record_id}")
-    public List all(@PathVariable int record_id,
+    public Integer all(@PathVariable int record_id,
                     @RequestParam(name = "from", required = false) String from,
                     @RequestParam(name = "to", required = false) String to) {
 
-        return recordAnalyticService.all(record_id);
+        return 123;
     }
 
     @GetMapping("/{record_id}/withUid")
-    public List get(@PathVariable int record_id,
+    public Integer get(@PathVariable int record_id,
                     @RequestParam(name = "from", required = false) String from,
                     @RequestParam(name = "to", required = false) String to) {
 
-        return recordAnalyticService.get(record_id);
+        return 228;
     }
 
 }
