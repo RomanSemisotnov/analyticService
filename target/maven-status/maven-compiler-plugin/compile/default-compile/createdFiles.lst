@@ -1,0 +1,8 @@
+MyPackage\Models\Uid.class
+MyPackage\Services\RecordAnalyticService.class
+MyPackage\Controllers\RecordAnalyticController.class
+MyPackage\Application.class
+MyPackage\Models\CorrectRequest.class
+MyPackage\Services\RecordService.class
+MyPackage\config\HibernateConfig.class
+MyPackage\Models\Record.class
