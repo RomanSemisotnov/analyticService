@@ -19,7 +19,7 @@ public class RecordAnalyticController {
                                          @RequestParam(name = "from", required = false) String from,
                                          @RequestParam(name = "to", required = false) String to) {
 
-        return recordAnalyticService.all(record_id);
+        return recordAnalyticService.all(record_id, from, to);
     }
 
     @GetMapping("/{record_id}/withUid")
@@ -27,7 +27,7 @@ public class RecordAnalyticController {
                                          @RequestParam(name = "from", required = false) String from,
                                          @RequestParam(name = "to", required = false) String to) {
 
-        return recordAnalyticService.get(record_id);
+        return recordAnalyticService.get(record_id, from, to);
     }
 
 }
