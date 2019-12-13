@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e7b9891-75b6-45f1-b5e3-7de94e401fbf" name="Default Changelist" comment="">
+    <list default="true" id="8e7b9891-75b6-45f1-b5e3-7de94e401fbf" name="Default Changelist" comment="qwe">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/RecordAnalyticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/RecordAnalyticService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +129,7 @@
       <workItem from="1576085344543" duration="5199000" />
       <workItem from="1576094074194" duration="9300000" />
       <workItem from="1576112740573" duration="1007000" />
-      <workItem from="1576150493508" duration="4205000" />
+      <workItem from="1576150493508" duration="7367000" />
     </task>
     <task id="LOCAL-00001" summary="qwe">
       <created>1576088467396</created>
@@ -216,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576152107550</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="qwe">
+      <created>1576157333071</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1576157333071</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

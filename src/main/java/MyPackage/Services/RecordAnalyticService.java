@@ -88,7 +88,7 @@ public class RecordAnalyticService {
         }
 
         public String getUidAnalyticQuery() {
-            return "SELECT uids.value as 'uid_value', \n" +
+            return "SELECT uids.id as 'uid_id', uids.value as 'uid_value', \n" +
                     "(SELECT COUNT(*) FROM correct_requests WHERE correct_requests.uid_id=uids.id " + getDateRange() + ") as request_count, \n" +
                     "(SELECT COUNT(*) FROM correct_requests WHERE uid_id=uids.id AND device_id IN (SELECT id FROM devices WHERE (name='Samsung phone' OR name='Sony phone' OR name='Asus phone' OR name='Xiomi phone' OR name='Samsung tablet' OR name='Sony tablet' or name='Asus tablet' or name = 'Xiomi tablet')) " + getDateRange() + ") as android_count, \n" +
                     "(SELECT COUNT(*) FROM correct_requests WHERE uid_id=uids.id AND device_id IN (SELECT id FROM devices WHERE (name='Iphone' OR name='Ipad')) " + getDateRange() + ") as ios_count, \n" +
