@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 @Service
 @Transactional
-public class RecordAnalyticService {
+public class DeviceAnalyticService {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -24,28 +27,45 @@ public class RecordAnalyticService {
     private String[] ios = {"Iphone", "Ipad"};
     private String[] unknown = {"Another phone", "Another tablet", "Unknown"};
 
-    public List getRating(Integer record_id) {
+    public List getRating(Integer record_id, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
-        Query onlyAndroidCountQuery = session.createQuery("select  new map(" +
+        String betweenClause = "";
+        if (startDate != null && endDate != null) {
+            betweenClause = " and request.created_at between :startDate and :endDate ";
+        }
+
+        Query query = session.createQuery("select  new map(" +
                 "count(uid) as onlyAndroidCount, " +
                 "(select count(uid) from Uid uid where uid.record_id=:record_id " +
-                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios)) " +
-                "and not exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids))) " +
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios) " + betweenClause + " ) " +
+                "and not exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids) " + betweenClause + " )) " +
                 "as onlyIosCount, " +
                 "(select count(uid) from Uid uid where uid.record_id=:record_id " +
-                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids)) " +
-                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios))) " +
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids) " + betweenClause + " ) " +
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios) " + betweenClause + " )) " +
                 "as androidAndIosCount) " +
                 "from Uid uid " +
                 "where uid.record_id=:record_id " +
-                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids))" +
-                "and not exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios))");
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids) " + betweenClause + " )" +
+                "and not exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios) " + betweenClause + " )");
 
-        onlyAndroidCountQuery.setParameterList("androids", androids);
-        onlyAndroidCountQuery.setParameterList("ios", ios);
-        onlyAndroidCountQuery.setParameter("record_id", record_id);
-        return onlyAndroidCountQuery.list();
+
+
+        query.setParameterList("androids", androids);
+        query.setParameterList("ios", ios);
+        query.setParameter("record_id", record_id);
+
+        if (startDate != null && endDate != null) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date start = format.parse(startDate+" 00:00:00");
+            Date end = format.parse(endDate + " 23:59:59");
+
+            query.setTimestamp("startDate", start);
+            query.setTimestamp("endDate", end);
+        }
+
+        return query.list();
     }
 
     public List<Map<String, Object>> all(Integer record_id, String from, String to) {
