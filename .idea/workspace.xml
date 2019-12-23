@@ -2,7 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e7b9891-75b6-45f1-b5e3-7de94e401fbf" name="Default Changelist" comment="qwe">
+      <change afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Models/Device.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/RecordAnalyticController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/RecordAnalyticController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Models/CorrectRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Models/CorrectRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Models/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Models/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Models/Uid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Models/Uid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/RecordAnalyticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/RecordAnalyticService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/RecordService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MyPackage/Controllers/RecordAnalyticController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MyPackage/Controllers/RecordAnalyticController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MyPackage/Models/CorrectRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MyPackage/Models/CorrectRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MyPackage/Models/Record.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MyPackage/Models/Record.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MyPackage/Models/Uid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MyPackage/Models/Uid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MyPackage/Services/RecordAnalyticService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MyPackage/Services/RecordAnalyticService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MyPackage/Services/RecordService.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,6 +144,13 @@
       <workItem from="1576094074194" duration="9300000" />
       <workItem from="1576112740573" duration="1007000" />
       <workItem from="1576150493508" duration="7367000" />
+      <workItem from="1576249287335" duration="761000" />
+      <workItem from="1576333144003" duration="6746000" />
+      <workItem from="1576534312141" duration="100000" />
+      <workItem from="1576536118233" duration="32000" />
+      <workItem from="1576609637868" duration="937000" />
+      <workItem from="1576611207818" duration="11532000" />
+      <workItem from="1576697975195" duration="23238000" />
     </task>
     <task id="LOCAL-00001" summary="qwe">
       <created>1576088467396</created>
@@ -222,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576157333071</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="qwe">
+      <created>1576249420483</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1576249420483</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

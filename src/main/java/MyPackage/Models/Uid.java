@@ -10,6 +10,8 @@ import java.util.List;
 @Table(name = "uids")
 public class Uid {
 
+    public Uid(){}
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

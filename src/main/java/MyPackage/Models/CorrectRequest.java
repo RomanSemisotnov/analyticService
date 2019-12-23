@@ -9,6 +9,8 @@ import java.util.Date;
 @Table(name = "correct_requests")
 public class CorrectRequest {
 
+    public CorrectRequest(){}
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +37,19 @@ public class CorrectRequest {
 
     @Column(name = "device_id")
     private int device_id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "device_id", insertable = false, updatable = false)
+    @JsonIgnore
+    private Device device;
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
+    }
 
     @Column(name = "ip")
     private String ip;

@@ -3,6 +3,7 @@ package MyPackage.Services;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,35 @@ public class RecordAnalyticService {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    private String[] androids = {"Samsung phone", "Sony phone", "Asus phone", "Xiomi phone",
+            "Samsung tablet", "Sony tablet", "Asus tablet", "Xiomi tablet"};
+    private String[] ios = {"Iphone", "Ipad"};
+    private String[] unknown = {"Another phone", "Another tablet", "Unknown"};
+
+    public List getRating(Integer record_id) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Query onlyAndroidCountQuery = session.createQuery("select  new map(" +
+                "count(uid) as onlyAndroidCount, " +
+                "(select count(uid) from Uid uid where uid.record_id=:record_id " +
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios)) " +
+                "and not exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids))) " +
+                "as onlyIosCount, " +
+                "(select count(uid) from Uid uid where uid.record_id=:record_id " +
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids)) " +
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios))) " +
+                "as androidAndIosCount) " +
+                "from Uid uid " +
+                "where uid.record_id=:record_id " +
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids))" +
+                "and not exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios))");
+
+        onlyAndroidCountQuery.setParameterList("androids", androids);
+        onlyAndroidCountQuery.setParameterList("ios", ios);
+        onlyAndroidCountQuery.setParameter("record_id", record_id);
+        return onlyAndroidCountQuery.list();
+    }
 
     public List<Map<String, Object>> all(Integer record_id, String from, String to) {
         Session session = sessionFactory.getCurrentSession();
