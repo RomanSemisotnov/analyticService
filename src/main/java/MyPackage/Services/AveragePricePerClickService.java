@@ -22,7 +22,7 @@ public class AveragePricePerClickService {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map( " +
-                "case when count(request)=0 then 'No opening' else (request.uid.record.priceOneTag * request.uid.record.needLinks / count(request)) end as pricePerClick ) " +
+                "case when count(request)=0 then 'No opening' else round(request.uid.record.priceOneTag * request.uid.record.needLinks / count(request),2) end as pricePerClick ) " +
                 "from CorrectRequest request " +
                 "where request.uid.record.id = :record_id and request.isConversion = 'yes' ");
 
@@ -35,7 +35,7 @@ public class AveragePricePerClickService {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map( " +
-                "case when count(request)=0 then 'No opening' else (request.uid.record.priceOneTag * request.uid.record.needLinks / count(request)) end as pricePerClick ) " +
+                "case when count(request)=0 then 'No opening' else round(request.uid.record.priceOneTag * request.uid.record.needLinks / count(request),2) end as pricePerClick ) " +
                 "from CorrectRequest request " +
                 "where request.uid.record.id = :record_id and request.isConversion = 'yes' " +
                 "and request.created_at between :startDate and :endDate");
