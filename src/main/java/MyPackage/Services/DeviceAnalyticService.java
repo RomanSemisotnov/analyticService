@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -49,14 +50,13 @@ public class DeviceAnalyticService {
                 "and not exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios) " + betweenClause + " )");
 
 
-
         query.setParameterList("androids", androids);
         query.setParameterList("ios", ios);
         query.setParameter("record_id", record_id);
 
         if (startDate != null && endDate != null) {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date start = format.parse(startDate+" 00:00:00");
+            Date start = format.parse(startDate + " 00:00:00");
             Date end = format.parse(endDate + " 23:59:59");
 
             query.setTimestamp("startDate", start);
@@ -76,7 +76,7 @@ public class DeviceAnalyticService {
         return nQuery.getSingleResult();
     }
 
-    public Object get(Integer record_id, String from, String to) {
+    public List get(Integer record_id, String from, String to) {
         Session session = sessionFactory.getCurrentSession();
 
         SqlQuery sqlQuery = new SqlQuery(record_id, from, to);
@@ -84,7 +84,7 @@ public class DeviceAnalyticService {
         NativeQuery query = session.createSQLQuery(sqlQuery.getUidAnalyticQuery());
         query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
 
-        return query.getSingleResult();
+        return query.list();
     }
 
     class SqlQuery {
