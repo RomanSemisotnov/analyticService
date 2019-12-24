@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e7b9891-75b6-45f1-b5e3-7de94e401fbf" name="Default Changelist" comment="qwe">
-      <change afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ClickThroughRateController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/ClickThroughRateService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/AveragePricePerClickController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/AveragePricePerClickService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Models/CorrectRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Models/CorrectRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MyPackage/Models/CorrectRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MyPackage/Models/CorrectRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ClickThroughRateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ClickThroughRateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/DeviceAnalyticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/DeviceAnalyticsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/ClickThroughRateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/ClickThroughRateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/DeviceAnalyticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/DeviceAnalyticService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +146,8 @@
       <workItem from="1576611207818" duration="11532000" />
       <workItem from="1576697975195" duration="29826000" />
       <workItem from="1577114193560" duration="10502000" />
-      <workItem from="1577189415339" duration="3424000" />
+      <workItem from="1577189415339" duration="3502000" />
+      <workItem from="1577209889442" duration="4877000" />
     </task>
     <task id="LOCAL-00001" summary="qwe">
       <created>1576088467396</created>
@@ -258,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577124706308</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="qwe">
+      <created>1577193356244</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1577193356244</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

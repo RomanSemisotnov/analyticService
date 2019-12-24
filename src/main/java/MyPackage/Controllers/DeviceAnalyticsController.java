@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/analytics/devices")
@@ -16,7 +14,7 @@ public class DeviceAnalyticsController {
     private DeviceAnalyticService deviceAnalyticService;
 
     @GetMapping("/{record_id}/all")
-    public List all(@PathVariable int record_id,
+    public Object all(@PathVariable int record_id,
                     @RequestParam(name = "startDate", required = false) String from,
                     @RequestParam(name = "endDate", required = false) String to) {
 
@@ -25,7 +23,7 @@ public class DeviceAnalyticsController {
     }
 
     @GetMapping("/{record_id}")
-    public List<Map<String, Object>> get(@PathVariable int record_id,
+    public Object get(@PathVariable int record_id,
                                          @RequestParam(name = "startDate", required = false) String from,
                                          @RequestParam(name = "endDate", required = false) String to) {
 
@@ -33,7 +31,7 @@ public class DeviceAnalyticsController {
     }
 
     @GetMapping("/{record_id}/rating")
-    public List getRating(@PathVariable int record_id,
+    public Object getRating(@PathVariable int record_id,
                           @RequestParam(name = "startDate", required = false) String startDate,
                           @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 

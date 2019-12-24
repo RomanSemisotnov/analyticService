@@ -1,17 +1,17 @@
 package MyPackage.Controllers;
 
-import MyPackage.Services.ClickThroughRateService;
+import MyPackage.Services.AveragePricePerClickService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 
 @RestController
-@RequestMapping("/analytics/clickThroughRate")
-public class ClickThroughRateController {
+@RequestMapping("/analytics/averagePricePerClick")
+public class AveragePricePerClickController {
 
     @Autowired
-    private ClickThroughRateService clickThroughRateService;
+    private AveragePricePerClickService averagePricePerClickService;
 
     @GetMapping("/{record_id}")
     public Object get(@PathVariable int record_id,
@@ -19,10 +19,10 @@ public class ClickThroughRateController {
                       @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 
         if (startDate == null) {
-            return clickThroughRateService.get(record_id);
+            return averagePricePerClickService.get(record_id);
         }
 
-        return clickThroughRateService.get(record_id, startDate, endDate);
+        return averagePricePerClickService.get(record_id, startDate, endDate);
     }
 
 }

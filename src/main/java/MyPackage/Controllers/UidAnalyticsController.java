@@ -15,17 +15,17 @@ public class UidAnalyticsController {
     private UidAnalyticService uidAnalyticService;
 
     @GetMapping("/{record_id}/openCount")
-    public List getOpenCount(@PathVariable int record_id,
-                             @RequestParam(name = "startDate", required = false) String startDate,
-                             @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
+    public Object getOpenCount(@PathVariable int record_id,
+                               @RequestParam(name = "startDate", required = false) String startDate,
+                               @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 
         return uidAnalyticService.getOpenCount(record_id, startDate, endDate);
     }
 
     @GetMapping("/{record_id}/notOpenCount")
-    public List getNotOpenCount(@PathVariable int record_id,
-                                @RequestParam(name = "startDate", required = false) String startDate,
-                                @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
+    public Object getNotOpenCount(@PathVariable int record_id,
+                                  @RequestParam(name = "startDate", required = false) String startDate,
+                                  @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 
         return uidAnalyticService.getNotOpenCount(record_id, startDate, endDate);
     }

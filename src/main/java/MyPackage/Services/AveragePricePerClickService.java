@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Service
 @Transactional
-public class ClickThroughRateService {
+public class AveragePricePerClickService {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -21,15 +21,12 @@ public class ClickThroughRateService {
     public Object get(int record_id) {
         Session session = sessionFactory.getCurrentSession();
 
-        Query query=session.createQuery("select new map" +
-                "(count(request) as withConversion, " +
-                "(select count(request) from CorrectRequest request " +
-                "where request.uid.record_id = :record_id and request.isConversion ='no') " +
-                "as withoutConversion)  " +
+        Query query = session.createQuery("select new map( " +
+                "case when count(request)=0 then 'No opening' else (request.uid.record.priceOneTag * request.uid.record.needLinks / count(request)) end as pricePerClick ) " +
                 "from CorrectRequest request " +
-                "where request.uid.record_id = :record_id and request.isConversion ='yes'");
+                "where request.uid.record.id = :record_id and request.isConversion = 'yes' ");
 
-        query.setParameter("record_id",record_id);
+        query.setParameter("record_id", record_id);
 
         return query.getSingleResult();
     }
@@ -37,18 +34,16 @@ public class ClickThroughRateService {
     public Object get(int record_id, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
-        Query query=session.createQuery("select new map" +
-                "(count(request) as withConversion, " +
-                "(select count(request) from CorrectRequest request " +
-                "where request.uid.record_id = :record_id and request.isConversion ='no' and request.created_at between :startDate and :endDate) " +
-                "as withoutConversion)  " +
+        Query query = session.createQuery("select new map( " +
+                "case when count(request)=0 then 'No opening' else (request.uid.record.priceOneTag * request.uid.record.needLinks / count(request)) end as pricePerClick ) " +
                 "from CorrectRequest request " +
-                "where request.uid.record_id = :record_id and request.isConversion ='yes' and request.created_at between :startDate and :endDate");
+                "where request.uid.record.id = :record_id and request.isConversion = 'yes' " +
+                "and request.created_at between :startDate and :endDate");
 
-        query.setParameter("record_id",record_id);
+        query.setParameter("record_id", record_id);
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date start = format.parse(startDate+" 00:00:00");
+        Date start = format.parse(startDate + " 00:00:00");
         Date end = format.parse(endDate + " 23:59:59");
         query.setTimestamp("startDate", start);
         query.setTimestamp("endDate", end);

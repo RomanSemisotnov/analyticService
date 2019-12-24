@@ -12,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional
@@ -27,7 +25,7 @@ public class DeviceAnalyticService {
     private String[] ios = {"Iphone", "Ipad"};
     private String[] unknown = {"Another phone", "Another tablet", "Unknown"};
 
-    public List getRating(Integer record_id, String startDate, String endDate) throws ParseException {
+    public Object getRating(Integer record_id, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         String betweenClause = "";
@@ -65,20 +63,20 @@ public class DeviceAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return query.list();
+        return query.getSingleResult();
     }
 
-    public List<Map<String, Object>> all(Integer record_id, String from, String to) {
+    public Object all(Integer record_id, String from, String to) {
         Session session = sessionFactory.getCurrentSession();
 
         SqlQuery sqlQuery = new SqlQuery(record_id, from, to);
 
         NativeQuery nQuery = session.createSQLQuery(sqlQuery.getAllAnalyticQuery());
         nQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
-        return nQuery.list();
+        return nQuery.getSingleResult();
     }
 
-    public List<Map<String, Object>> get(Integer record_id, String from, String to) {
+    public Object get(Integer record_id, String from, String to) {
         Session session = sessionFactory.getCurrentSession();
 
         SqlQuery sqlQuery = new SqlQuery(record_id, from, to);
@@ -86,7 +84,7 @@ public class DeviceAnalyticService {
         NativeQuery query = session.createSQLQuery(sqlQuery.getUidAnalyticQuery());
         query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
 
-        return query.list();
+        return query.getSingleResult();
     }
 
     class SqlQuery {

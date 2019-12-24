@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Service
 @Transactional
@@ -19,7 +18,7 @@ public class UidAnalyticService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public List getOpenCount(int record_id, String startDate, String endDate) throws ParseException {
+    public Object getOpenCount(int record_id, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map (count(uid) as count)" +
@@ -38,10 +37,10 @@ public class UidAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return query.list();
+        return query.getSingleResult();
     }
 
-    public List getNotOpenCount(int record_id, String startDate, String endDate) throws ParseException {
+    public Object getNotOpenCount(int record_id, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map (count(uid) as count)" +
@@ -60,7 +59,7 @@ public class UidAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return query.list();
+        return query.getSingleResult();
     }
 
     private String getBetweenClause(String startDate) {
