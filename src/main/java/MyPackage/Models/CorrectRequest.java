@@ -10,7 +10,8 @@ import java.util.Date;
 @Table(name = "correct_requests")
 public class CorrectRequest {
 
-    public CorrectRequest(){}
+    public CorrectRequest() {
+    }
 
     @Id
     @Column(name = "id")
@@ -52,6 +53,9 @@ public class CorrectRequest {
         this.device = device;
     }
 
+    @Column(name = "isConversion")
+    private String isConversion;
+
     @Column(name = "ip")
     private String ip;
 
@@ -91,6 +95,14 @@ public class CorrectRequest {
 
     public void setDevice_id(int device_id) {
         this.device_id = device_id;
+    }
+
+    public String getIsConversion() {
+        return isConversion;
+    }
+
+    public void setIsConversion(String isConversion) {
+        this.isConversion = isConversion;
     }
 
     public String getIp() {
