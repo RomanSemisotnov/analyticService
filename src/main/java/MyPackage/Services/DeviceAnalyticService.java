@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,10 +22,11 @@ public class DeviceAnalyticService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    private String[] androids = {"Samsung phone", "Sony phone", "Asus phone", "Xiomi phone",
-            "Samsung tablet", "Sony tablet", "Asus tablet", "Xiomi tablet"};
-    private String[] ios = {"Iphone", "Ipad"};
-    private String[] unknown = {"Another phone", "Another tablet", "Unknown"};
+    @Resource(name = "getAndroids")
+    private List<String> androids;
+
+    @Resource(name = "getIos")
+    private List<String> ios;
 
     public Object getRating(Integer record_id, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
