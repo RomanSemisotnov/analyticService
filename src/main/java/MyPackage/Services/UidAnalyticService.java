@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -18,15 +19,15 @@ public class UidAnalyticService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Object getOpenCount(int record_id, String startDate, String endDate) throws ParseException {
+    public Object getOpenCount(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map (count(uid) as count)" +
-                "from Uid uid where uid.record_id=:record_id and exists " +
+                "from Uid uid where uid.record_id in (:record_ids) and exists " +
                 "(from CorrectRequest request where request.uid_id = uid.id " +
-                getBetweenClause(startDate) + ")");
+                getBetweenClause(startDate) + ") " + getUidBetweenClause(startDate));
 
-        query.setParameter("record_id", record_id);
+        query.setParameterList("record_ids", record_ids);
 
         if (startDate != null && endDate != null) {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -40,15 +41,15 @@ public class UidAnalyticService {
         return query.getSingleResult();
     }
 
-    public Object getNotOpenCount(int record_id, String startDate, String endDate) throws ParseException {
+    public Object getNotOpenCount(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map (count(uid) as count)" +
-                "from Uid uid where uid.record_id=:record_id and not exists " +
+                "from Uid uid where uid.record_id in (:record_ids) and not exists " +
                 "(from CorrectRequest request where request.uid_id = uid.id " +
-                getBetweenClause(startDate) + ")");
+                getBetweenClause(startDate) + ") " + getUidBetweenClause(startDate));
 
-        query.setParameter("record_id", record_id);
+        query.setParameter("record_ids", record_ids);
 
         if (startDate != null && endDate != null) {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -60,12 +61,18 @@ public class UidAnalyticService {
         }
 
         return query.getSingleResult();
+    }
+
+    private String getUidBetweenClause(String startDate) {
+        if (startDate == null)
+            return "";
+        return " and uid.created_at between :startDate and :endDate ";
     }
 
     private String getBetweenClause(String startDate) {
         if (startDate == null)
             return "";
-        return "and request.created_at between :startDate and :endDate";
+        return " and request.created_at between :startDate and :endDate ";
     }
 
 }

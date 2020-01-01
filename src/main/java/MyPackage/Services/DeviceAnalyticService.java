@@ -2,9 +2,7 @@ package MyPackage.Services;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
-import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,33 +26,31 @@ public class DeviceAnalyticService {
     @Resource(name = "getIos")
     private List<String> ios;
 
-    public Object getRating(Integer record_id, String startDate, String endDate) throws ParseException {
+    @Resource(name = "getUnknown")
+    private List<String> unknown;
+
+    public Object getRating(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
-        String betweenClause = "";
-        if (startDate != null && endDate != null) {
-            betweenClause = " and request.created_at between :startDate and :endDate ";
-        }
-
-        Query query = session.createQuery("select  new map(" +
+        Query query = session.createQuery("select new map(" +
                 "count(uid) as onlyAndroidCount, " +
-                "(select count(uid) from Uid uid where uid.record_id=:record_id " +
-                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios) " + betweenClause + " ) " +
-                "and not exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids) " + betweenClause + " )) " +
+                "(select count(uid) from Uid uid where uid.record_id in (:record_ids) " +
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios) " + getBetweenClause(startDate, endDate) + " ) " +
+                "and not exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids) " + getBetweenClause(startDate, endDate) + " )) " +
                 "as onlyIosCount, " +
-                "(select count(uid) from Uid uid where uid.record_id=:record_id " +
-                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids) " + betweenClause + " ) " +
-                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios) " + betweenClause + " )) " +
+                "(select count(uid) from Uid uid where uid.record_id in (:record_ids) " +
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids) " + getBetweenClause(startDate, endDate) + " ) " +
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios) " + getBetweenClause(startDate, endDate) + " )) " +
                 "as androidAndIosCount) " +
                 "from Uid uid " +
-                "where uid.record_id=:record_id " +
-                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids) " + betweenClause + " )" +
-                "and not exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios) " + betweenClause + " )");
+                "where uid.record_id in (:record_ids) " +
+                "and exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:androids) " + getBetweenClause(startDate, endDate) + " )" +
+                "and not exists (from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios) " + getBetweenClause(startDate, endDate) + " )");
 
 
         query.setParameterList("androids", androids);
         query.setParameterList("ios", ios);
-        query.setParameter("record_id", record_id);
+        query.setParameterList("record_ids", record_ids);
 
         if (startDate != null && endDate != null) {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -68,84 +64,74 @@ public class DeviceAnalyticService {
         return query.getSingleResult();
     }
 
-    public Object all(Integer record_id, String from, String to) {
+    public Object all(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
-        SqlQuery sqlQuery = new SqlQuery(record_id, from, to);
+        Query query = session.createQuery("select new map(count(request) as commonCount, " +
+                "(select count(request) from CorrectRequest request where request.uid.record_id in (:record_ids) " +
+                "and request.device.name in (:android_names) " + getBetweenClause(startDate, endDate) + " ) as androidCount, " +
+                "(select count(request) from CorrectRequest request where request.uid.record_id in (:record_ids) " +
+                "and request.device.name in (:ios_names) " + getBetweenClause(startDate, endDate) + " ) as iosCount, " +
+                "(select count(request) from CorrectRequest request where request.uid.record_id in (:record_ids) " +
+                "and request.device.name in (:unknown_names) " + getBetweenClause(startDate, endDate) + " ) as unknownCount) " +
+                "from CorrectRequest request where request.uid.record_id in (:record_ids) " + getBetweenClause(startDate, endDate));
 
-        NativeQuery nQuery = session.createSQLQuery(sqlQuery.getAllAnalyticQuery());
-        nQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
-        return nQuery.getSingleResult();
+        query.setParameterList("record_ids", record_ids);
+        query.setParameterList("android_names", androids);
+        query.setParameterList("ios_names", ios);
+        query.setParameterList("unknown_names", unknown);
+
+        if (startDate != null && endDate != null) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date start = format.parse(startDate + " 00:00:00");
+            Date end = format.parse(endDate + " 23:59:59");
+
+            query.setTimestamp("startDate", start);
+            query.setTimestamp("endDate", end);
+        }
+
+        return query.getSingleResult();
     }
 
-    public List get(Integer record_id, String from, String to) {
+    public List get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
-        SqlQuery sqlQuery = new SqlQuery(record_id, from, to);
+        Query query = session.createQuery("select new map (uid.id as uid_id, uid.value as uid_value, " +
+                "(select count(request) from CorrectRequest request where request.uid_id=uid.id " + getBetweenClause(startDate, endDate) + " ) as request_count, " +
+                "(select count(request) from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:android_names) " + getBetweenClause(startDate, endDate) + " ) as android_count, " +
+                "(select count(request) from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:ios_names) " + getBetweenClause(startDate, endDate) + " ) as ios_count, " +
+                "(select count(request) from CorrectRequest request where request.uid_id=uid.id and request.device.name in (:unknown_names) " + getBetweenClause(startDate, endDate) + " ) as unknown_count) " +
+                "from Uid uid where uid.record_id in (:record_ids) " + getUidBetweenClause(startDate));
 
-        NativeQuery query = session.createSQLQuery(sqlQuery.getUidAnalyticQuery());
-        query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+        query.setParameterList("record_ids", record_ids);
+        query.setParameterList("android_names", androids);
+        query.setParameterList("ios_names", ios);
+        query.setParameterList("unknown_names", unknown);
+
+        if (startDate != null && endDate != null) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date start = format.parse(startDate + " 00:00:00");
+            Date end = format.parse(endDate + " 23:59:59");
+
+            query.setTimestamp("startDate", start);
+            query.setTimestamp("endDate", end);
+        }
 
         return query.list();
     }
 
-    class SqlQuery {
+    private String getUidBetweenClause(String startDate) {
+        if (startDate == null)
+            return "";
+        return " and uid.created_at between :startDate and :endDate ";
+    }
 
-        private int record_id;
-        private String from;
-        private String to;
-
-        public SqlQuery(Integer record_id, String from, String to) {
-            this.record_id = record_id;
-            this.from = from;
-            this.to = to;
+    private String getBetweenClause(String startDate, String endDate) {
+        String betweenClause = "";
+        if (startDate != null && endDate != null) {
+            betweenClause = " and request.created_at between :startDate and :endDate ";
         }
-
-        public String getAndroid() {
-            return "SELECT COUNT(*) FROM correct_requests WHERE uid_id IN (" + getUid_idSet() + ") AND " +
-                    "device_id IN (SELECT id FROM devices WHERE " +
-                    "name='Samsung phone' OR name='Sony phone' OR name='Asus phone' OR name='Xiomi phone' OR " +
-                    "name='Samsung tablet' OR name='Sony tablet' or name='Asus tablet' or " +
-                    "name = 'Xiomi tablet')" + getDateRange();
-        }
-
-        public String getIos() {
-            return "SELECT COUNT(*) FROM correct_requests WHERE uid_id IN (" + getUid_idSet() + ") AND device_id IN (SELECT id FROM devices WHERE name='Iphone' OR name='Ipad')" + getDateRange();
-        }
-
-        public String getUnknown() {
-            return "SELECT COUNT(*) FROM correct_requests WHERE uid_id IN (" + getUid_idSet() + ") AND device_id IN " +
-                    " (SELECT id FROM devices WHERE name='Another phone' OR name='Another tablet' OR name = 'unknown')" + getDateRange();
-        }
-
-        public String getUid_idSet() {
-            return "Select id FROM uids WHERE record_id=" + record_id;
-        }
-
-        private String getDateRange() {
-            if (from == null)
-                return "";
-
-            return "AND created_at BETWEEN  STR_TO_DATE( '" + from + " 00:00:00' , '%Y-%m-%d %H:%i:%s') AND STR_TO_DATE( '" + to + " 23:59:59',   '%Y-%m-%d %H:%i:%s')";
-        }
-
-        public String getAllAnalyticQuery() {
-            return "SELECT COUNT(*) as commonCount, " +
-                    "(" + getAndroid() + ") as androidCount, " +
-                    "(" + getIos() + ") as iosCount," +
-                    "(" + getUnknown() + ") as unknownCount " +
-                    "FROM correct_requests WHERE uid_id IN (" + getUid_idSet() + ")" + getDateRange();
-        }
-
-        public String getUidAnalyticQuery() {
-            return "SELECT uids.id as 'uid_id', uids.value as 'uid_value', \n" +
-                    "(SELECT COUNT(*) FROM correct_requests WHERE correct_requests.uid_id=uids.id " + getDateRange() + ") as request_count, \n" +
-                    "(SELECT COUNT(*) FROM correct_requests WHERE uid_id=uids.id AND device_id IN (SELECT id FROM devices WHERE (name='Samsung phone' OR name='Sony phone' OR name='Asus phone' OR name='Xiomi phone' OR name='Samsung tablet' OR name='Sony tablet' or name='Asus tablet' or name = 'Xiomi tablet')) " + getDateRange() + ") as android_count, \n" +
-                    "(SELECT COUNT(*) FROM correct_requests WHERE uid_id=uids.id AND device_id IN (SELECT id FROM devices WHERE (name='Iphone' OR name='Ipad')) " + getDateRange() + ") as ios_count, \n" +
-                    "(SELECT COUNT(*) FROM correct_requests WHERE uid_id=uids.id AND device_id IN (SELECT id FROM devices WHERE (name='Another phone' OR name='Another tablet' OR name = 'unknown')) " + getDateRange() + " ) as unknown_count \n" +
-                    "FROM records r INNER JOIN uids ON r.id=uids.record_id WHERE r.id=" + record_id;
-        }
-
+        return betweenClause;
     }
 
 }
