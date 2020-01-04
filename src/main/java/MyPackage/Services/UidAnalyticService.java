@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -19,7 +20,7 @@ public class UidAnalyticService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Object getOpenCount(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
+    public Map<String, Object> getOpenCount(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map (count(uid) as count)" +
@@ -38,10 +39,10 @@ public class UidAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return query.getSingleResult();
+        return (Map<String, Object>) query.getSingleResult();
     }
 
-    public Object getNotOpenCount(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
+    public Map<String, Object> getNotOpenCount(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map (count(uid) as count)" +
@@ -60,7 +61,7 @@ public class UidAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return query.getSingleResult();
+        return (Map<String, Object>) query.getSingleResult();
     }
 
     private String getUidBetweenClause(String startDate) {

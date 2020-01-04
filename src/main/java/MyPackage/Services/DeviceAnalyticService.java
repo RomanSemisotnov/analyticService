@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -29,7 +30,7 @@ public class DeviceAnalyticService {
     @Resource(name = "getUnknown")
     private List<String> unknown;
 
-    public Object getRating(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
+    public Map<String, Object> getRating(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map(" +
@@ -61,10 +62,10 @@ public class DeviceAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return query.getSingleResult();
+        return (Map<String, Object>) query.getSingleResult();
     }
 
-    public Object all(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
+    public Map<String, Object> all(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map(count(request) as commonCount, " +
@@ -90,7 +91,7 @@ public class DeviceAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return query.getSingleResult();
+        return (Map<String, Object>) query.getSingleResult();
     }
 
     public List get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {

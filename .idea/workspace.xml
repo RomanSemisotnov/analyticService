@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e7b9891-75b6-45f1-b5e3-7de94e401fbf" name="Default Changelist" comment="qwe">
+      <change afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ExcelAnalyticsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Views/ExcelAnalyticView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/AveragePricePerClickController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/AveragePricePerClickController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ClickThroughRateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ClickThroughRateController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/DeviceAnalyticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/DeviceAnalyticsController.java" afterDir="false" />
@@ -12,7 +14,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/ClickThroughRateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/ClickThroughRateService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/DeviceAnalyticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/DeviceAnalyticService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/UidAnalyticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/UidAnalyticService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MyPackage/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MyPackage/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/thisProject.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/thisProject.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/thisProject.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/thisProject.jar.original" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +161,11 @@
       <workItem from="1577724347068" duration="16491000" />
       <workItem from="1577804253869" duration="7939000" />
       <workItem from="1577827003642" duration="1021000" />
-      <workItem from="1577831877060" duration="9752000" />
+      <workItem from="1577831877060" duration="12719000" />
+      <workItem from="1577886344251" duration="3313000" />
+      <workItem from="1577990879819" duration="1904000" />
+      <workItem from="1578076236280" duration="12469000" />
+      <workItem from="1578110409625" duration="3316000" />
     </task>
     <task id="LOCAL-00001" summary="qwe">
       <created>1576088467396</created>
@@ -306,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577732794811</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="qwe">
+      <created>1577841655814</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1577841655814</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

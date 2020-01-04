@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/analytics/devices")
@@ -16,9 +17,9 @@ public class DeviceAnalyticsController {
     private DeviceAnalyticService deviceAnalyticService;
 
     @GetMapping("/{record_id}/all")
-    public Object all(@PathVariable int record_id,
-                      @RequestParam(name = "startDate", required = false) String from,
-                      @RequestParam(name = "endDate", required = false) String to) throws ParseException {
+    public Map<String, Object> all(@PathVariable int record_id,
+                                   @RequestParam(name = "startDate", required = false) String from,
+                                   @RequestParam(name = "endDate", required = false) String to) throws ParseException {
 
         List<Integer> record_ids = new ArrayList<>();
         record_ids.add(record_id);
@@ -38,9 +39,9 @@ public class DeviceAnalyticsController {
     }
 
     @GetMapping("/{record_id}/rating")
-    public Object getRating(@PathVariable int record_id,
-                            @RequestParam(name = "startDate", required = false) String startDate,
-                            @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
+    public Map<String, Object> getRating(@PathVariable int record_id,
+                                         @RequestParam(name = "startDate", required = false) String startDate,
+                                         @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 
         List<Integer> record_ids = new ArrayList<>();
         record_ids.add(record_id);

@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -19,7 +20,7 @@ public class AveragePricePerClickService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Object get(List<Integer> record_ids) {
+    public Map<String, Object> get(List<Integer> record_ids) {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map( " +
@@ -29,10 +30,10 @@ public class AveragePricePerClickService {
 
         query.setParameterList("record_ids", record_ids);
 
-        return query.getSingleResult();
+        return (Map<String, Object>) query.getSingleResult();
     }
 
-    public Object get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
+    public Map<String, Object> get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map( " +
@@ -49,7 +50,7 @@ public class AveragePricePerClickService {
         query.setTimestamp("startDate", start);
         query.setTimestamp("endDate", end);
 
-        return query.getSingleResult();
+        return (Map<String, Object>) query.getSingleResult();
     }
 
 }
