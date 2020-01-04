@@ -29,7 +29,7 @@ public class ExcelAnalyticsController {
                                    @RequestParam(name = "endDate", required = false) String endDate) throws Exception {
 
         Map<String, Object> object = deviceAnalyticService.getRating(record_ids, startDate, endDate);
-        
+
 
         return object;
 
