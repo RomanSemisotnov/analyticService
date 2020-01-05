@@ -30,7 +30,7 @@ public class DeviceAnalyticService {
     @Resource(name = "getUnknown")
     private List<String> unknown;
 
-    public Map<String, Object> getRating(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
+    public Map<String, Long> getRating(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map(" +
@@ -62,10 +62,10 @@ public class DeviceAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return (Map<String, Object>) query.getSingleResult();
+        return (Map<String, Long>) query.getSingleResult();
     }
 
-    public Map<String, Object> all(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
+    public Map<String, Long> all(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map(count(request) as commonCount, " +
@@ -91,10 +91,10 @@ public class DeviceAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return (Map<String, Object>) query.getSingleResult();
+        return (Map<String, Long>) query.getSingleResult();
     }
 
-    public List get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
+    public List<Map<String, Object>> get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map (uid.id as uid_id, uid.value as uid_value, " +
@@ -118,7 +118,7 @@ public class DeviceAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return query.list();
+        return (List<Map<String, Object>>) query.list();
     }
 
     private String getUidBetweenClause(String startDate) {

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/analytics/uids")
@@ -17,9 +16,9 @@ public class UidAnalyticsController {
     private UidAnalyticService uidAnalyticService;
 
     @GetMapping("/{record_id}/openCount")
-    public Map<String, Object> getOpenCount(@PathVariable int record_id,
-                                            @RequestParam(name = "startDate", required = false) String startDate,
-                                            @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
+    public Long getOpenCount(@PathVariable int record_id,
+                             @RequestParam(name = "startDate", required = false) String startDate,
+                             @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 
         List<Integer> record_ids = new ArrayList<>();
         record_ids.add(record_id);
@@ -28,9 +27,9 @@ public class UidAnalyticsController {
     }
 
     @GetMapping("/{record_id}/notOpenCount")
-    public Map<String, Object> getNotOpenCount(@PathVariable int record_id,
-                                               @RequestParam(name = "startDate", required = false) String startDate,
-                                               @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
+    public Long getNotOpenCount(@PathVariable int record_id,
+                                @RequestParam(name = "startDate", required = false) String startDate,
+                                @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 
         List<Integer> record_ids = new ArrayList<>();
         record_ids.add(record_id);

@@ -20,10 +20,10 @@ public class UidAnalyticService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Map<String, Object> getOpenCount(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
+    public Long getOpenCount(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
-        Query query = session.createQuery("select new map (count(uid) as count)" +
+        Query query = session.createQuery("select count(uid) as count " +
                 "from Uid uid where uid.record_id in (:record_ids) and exists " +
                 "(from CorrectRequest request where request.uid_id = uid.id " +
                 getBetweenClause(startDate) + ") " + getUidBetweenClause(startDate));
@@ -39,13 +39,13 @@ public class UidAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return (Map<String, Object>) query.getSingleResult();
+        return (Long) query.getSingleResult();
     }
 
-    public Map<String, Object> getNotOpenCount(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
+    public Long getNotOpenCount(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
-        Query query = session.createQuery("select new map (count(uid) as count)" +
+        Query query = session.createQuery("select count(uid) as count " +
                 "from Uid uid where uid.record_id in (:record_ids) and not exists " +
                 "(from CorrectRequest request where request.uid_id = uid.id " +
                 getBetweenClause(startDate) + ") " + getUidBetweenClause(startDate));
@@ -61,7 +61,7 @@ public class UidAnalyticService {
             query.setTimestamp("endDate", end);
         }
 
-        return (Map<String, Object>) query.getSingleResult();
+        return (Long) query.getSingleResult();
     }
 
     private String getUidBetweenClause(String startDate) {

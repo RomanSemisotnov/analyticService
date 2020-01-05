@@ -20,7 +20,7 @@ public class ClickThroughRateService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Map<String, Object> get(List<Integer> record_ids) {
+    public Map<String, Long> get(List<Integer> record_ids) {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map" +
@@ -33,10 +33,10 @@ public class ClickThroughRateService {
 
         query.setParameterList("record_ids", record_ids);
 
-        return (Map<String, Object>) query.getSingleResult();
+        return (Map<String, Long>) query.getSingleResult();
     }
 
-    public Map<String, Object> get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
+    public Map<String, Long> get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("select new map" +
@@ -55,7 +55,7 @@ public class ClickThroughRateService {
         query.setTimestamp("startDate", start);
         query.setTimestamp("endDate", end);
 
-        return (Map<String, Object>) query.getSingleResult();
+        return (Map<String, Long>) query.getSingleResult();
     }
 
 }

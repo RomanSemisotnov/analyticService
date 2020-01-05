@@ -17,9 +17,9 @@ public class DeviceAnalyticsController {
     private DeviceAnalyticService deviceAnalyticService;
 
     @GetMapping("/{record_id}/all")
-    public Map<String, Object> all(@PathVariable int record_id,
-                                   @RequestParam(name = "startDate", required = false) String from,
-                                   @RequestParam(name = "endDate", required = false) String to) throws ParseException {
+    public Map<String, Long> all(@PathVariable int record_id,
+                                 @RequestParam(name = "startDate", required = false) String from,
+                                 @RequestParam(name = "endDate", required = false) String to) throws ParseException {
 
         List<Integer> record_ids = new ArrayList<>();
         record_ids.add(record_id);
@@ -28,9 +28,9 @@ public class DeviceAnalyticsController {
     }
 
     @GetMapping("/{record_id}")
-    public List get(@PathVariable int record_id,
-                    @RequestParam(name = "startDate", required = false) String from,
-                    @RequestParam(name = "endDate", required = false) String to) throws ParseException {
+    public List<Map<String, Object>> get(@PathVariable int record_id,
+                                         @RequestParam(name = "startDate", required = false) String from,
+                                         @RequestParam(name = "endDate", required = false) String to) throws ParseException {
 
         List<Integer> record_ids = new ArrayList<>();
         record_ids.add(record_id);
@@ -39,9 +39,9 @@ public class DeviceAnalyticsController {
     }
 
     @GetMapping("/{record_id}/rating")
-    public Map<String, Object> getRating(@PathVariable int record_id,
-                                         @RequestParam(name = "startDate", required = false) String startDate,
-                                         @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
+    public Map<String, Long> getRating(@PathVariable int record_id,
+                                       @RequestParam(name = "startDate", required = false) String startDate,
+                                       @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 
         List<Integer> record_ids = new ArrayList<>();
         record_ids.add(record_id);

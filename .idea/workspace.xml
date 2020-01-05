@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e7b9891-75b6-45f1-b5e3-7de94e401fbf" name="Default Changelist" comment="qwe">
-      <change afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ExcelAnalyticsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Views/ExcelAnalyticView.java" afterDir="false" />
+    <list default="true" id="8e7b9891-75b6-45f1-b5e3-7de94e401fbf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/AveragePricePerClickController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/AveragePricePerClickController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ClickThroughRateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ClickThroughRateController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/DeviceAnalyticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/DeviceAnalyticsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ExcelAnalyticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ExcelAnalyticsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/UidAnalyticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/UidAnalyticsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/AveragePricePerClickService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/AveragePricePerClickService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/ClickThroughRateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/ClickThroughRateService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/DeviceAnalyticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/DeviceAnalyticService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/UidAnalyticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/UidAnalyticService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/thisProject.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/thisProject.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/thisProject.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/thisProject.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Views/ExcelAnalyticView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Views/ExcelAnalyticView.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +161,13 @@
       <workItem from="1577886344251" duration="3313000" />
       <workItem from="1577990879819" duration="1904000" />
       <workItem from="1578076236280" duration="12469000" />
-      <workItem from="1578110409625" duration="3316000" />
+      <workItem from="1578110409625" duration="4933000" />
+      <workItem from="1578159656885" duration="421000" />
+      <workItem from="1578162158632" duration="8378000" />
+      <workItem from="1578172060125" duration="9152000" />
+      <workItem from="1578183998581" duration="126000" />
+      <workItem from="1578186797113" duration="287000" />
+      <workItem from="1578187311917" duration="1725000" />
     </task>
     <task id="LOCAL-00001" summary="qwe">
       <created>1576088467396</created>
@@ -321,7 +323,21 @@
       <option name="project" value="LOCAL" />
       <updated>1577841655814</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="qwe">
+      <created>1578113754717</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1578113754717</updated>
+    </task>
+    <task id="LOCAL-00024" summary="qwe">
+      <created>1578113958675</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1578113958675</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
