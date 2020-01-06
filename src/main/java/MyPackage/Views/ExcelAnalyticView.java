@@ -8,6 +8,7 @@ import org.springframework.web.servlet.view.document.AbstractXlsView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -69,8 +70,12 @@ public class ExcelAnalyticView extends AbstractXlsView {
             row.createCell(7).setCellValue("Средняя цена клика");
             row = sheet.createRow(currentRow++);
             row.createCell(0).setCellValue("Открыто: " + openCount);
+
+            double persent=100.00 * withConversion / (withConversion + withoutConversion);
+            DecimalFormat df = new DecimalFormat("#.##");
+            
             row.createCell(4).setCellValue(withConversion + "/" + (withConversion + withoutConversion) +
-                    "( " + (100.00 * withConversion / (withConversion + withoutConversion)) + "% )");
+                    "( " + Double.valueOf(df.format(persent)) + "% )");
             row.createCell(7).setCellValue(averagePricePerClick);
             row = sheet.createRow(currentRow++);
             row.createCell(0).setCellValue("Не открыто: " + notOpenCount);
