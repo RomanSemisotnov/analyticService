@@ -70,7 +70,7 @@ public class ExcelAnalyticView extends AbstractXlsView {
             row = sheet.createRow(currentRow++);
             row.createCell(0).setCellValue("Открыто: " + openCount);
             row.createCell(4).setCellValue(withConversion + "/" + (withConversion + withoutConversion) +
-                    "( " + (withConversion / (withConversion + withoutConversion) * 100.00) + "% )");
+                    "( " + (100.00 * withConversion / (withConversion + withoutConversion)) + "% )");
             row.createCell(7).setCellValue(averagePricePerClick);
             row = sheet.createRow(currentRow++);
             row.createCell(0).setCellValue("Не открыто: " + notOpenCount);
