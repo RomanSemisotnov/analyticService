@@ -19,35 +19,28 @@ public class AveragePricePerClickService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public String get(List<Integer> record_ids) {
-        Session session = sessionFactory.getCurrentSession();
-
-        Query query = session.createQuery("select " +
-                "case when count(request)=0 then 'No opening' else round(request.uid.record.priceOneTag * request.uid.record.needLinks / count(request),2) end " +
-                "from CorrectRequest request " +
-                "where request.uid.record.id in (:record_ids) and request.isConversion = 'yes' ");
-
-        query.setParameterList("record_ids", record_ids);
-
-        return (String) query.getSingleResult();
-    }
-
     public String get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
 
+        String betweenDateClause = "";
+        if (startDate != null && endDate != null) {
+            betweenDateClause = " and request.created_at between :startDate and :endDate ";
+        }
+
         Query query = session.createQuery("select " +
                 "case when count(request)=0 then 'No opening' else round(request.uid.record.priceOneTag * request.uid.record.needLinks / count(request),2) end " +
                 "from CorrectRequest request " +
-                "where request.uid.record.id in (:record_ids) and request.isConversion = 'yes' " +
-                "and request.created_at between :startDate and :endDate");
+                "where request.uid.record.id in (:record_ids) and request.isConversion = 'yes' " + betweenDateClause);
 
         query.setParameterList("record_ids", record_ids);
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date start = format.parse(startDate + " 00:00:00");
-        Date end = format.parse(endDate + " 23:59:59");
-        query.setTimestamp("startDate", start);
-        query.setTimestamp("endDate", end);
+        if (startDate != null && endDate != null) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date start = format.parse(startDate + " 00:00:00");
+            Date end = format.parse(endDate + " 23:59:59");
+            query.setTimestamp("startDate", start);
+            query.setTimestamp("endDate", end);
+        }
 
         return (String) query.getSingleResult();
     }

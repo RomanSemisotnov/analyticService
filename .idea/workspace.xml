@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e7b9891-75b6-45f1-b5e3-7de94e401fbf" name="Default Changelist" comment="">
+    <list default="true" id="8e7b9891-75b6-45f1-b5e3-7de94e401fbf" name="Default Changelist" comment="qwe">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/AveragePricePerClickController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/AveragePricePerClickController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ClickThroughRateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ClickThroughRateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/DeviceAnalyticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/DeviceAnalyticsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ExcelAnalyticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/ExcelAnalyticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/UidAnalyticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/UidAnalyticsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/AveragePricePerClickService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/AveragePricePerClickService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/ClickThroughRateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/ClickThroughRateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/DeviceAnalyticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/DeviceAnalyticService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Services/UidAnalyticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Services/UidAnalyticService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Views/ExcelAnalyticView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Views/ExcelAnalyticView.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +163,12 @@
       <workItem from="1578172060125" duration="9152000" />
       <workItem from="1578183998581" duration="126000" />
       <workItem from="1578186797113" duration="287000" />
-      <workItem from="1578187311917" duration="1725000" />
+      <workItem from="1578187311917" duration="1798000" />
+      <workItem from="1578190319027" duration="256000" />
+      <workItem from="1578272097142" duration="876000" />
+      <workItem from="1578274576223" duration="27000" />
+      <workItem from="1578276019261" duration="345000" />
+      <workItem from="1578277538700" duration="497000" />
     </task>
     <task id="LOCAL-00001" summary="qwe">
       <created>1576088467396</created>
@@ -337,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578113958675</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="qwe">
+      <created>1578189053340</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1578189053340</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

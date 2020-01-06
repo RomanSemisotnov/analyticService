@@ -24,10 +24,6 @@ public class ClickThroughRateController {
         List<Integer> record_ids = new ArrayList<>();
         record_ids.add(record_id);
 
-        if (startDate == null) {
-            return clickThroughRateService.get(record_ids);
-        }
-
         return clickThroughRateService.get(record_ids, startDate, endDate);
     }
 

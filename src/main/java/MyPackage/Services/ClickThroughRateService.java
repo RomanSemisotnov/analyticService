@@ -20,8 +20,13 @@ public class ClickThroughRateService {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Map<String, Long> get(List<Integer> record_ids) {
+    public Map<String, Long> get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
+
+        String betweenDateClause = "";
+        if (startDate != null && endDate != null) {
+            betweenDateClause = " and request.created_at between :startDate and :endDate";
+        }
 
         Query query = session.createQuery("select new map" +
                 "(count(request) as withConversion, " +
@@ -29,31 +34,17 @@ public class ClickThroughRateService {
                 "where request.uid.record_id in (:record_ids) and request.isConversion ='no') " +
                 "as withoutConversion)  " +
                 "from CorrectRequest request " +
-                "where request.uid.record_id in (:record_ids) and request.isConversion ='yes'");
+                "where request.uid.record_id in (:record_ids) and request.isConversion ='yes' " + betweenDateClause);
 
         query.setParameterList("record_ids", record_ids);
 
-        return (Map<String, Long>) query.getSingleResult();
-    }
-
-    public Map<String, Long> get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
-        Session session = sessionFactory.getCurrentSession();
-
-        Query query = session.createQuery("select new map" +
-                "(count(request) as withConversion, " +
-                "(select count(request) from CorrectRequest request " +
-                "where request.uid.record_id in (:record_ids) and request.isConversion ='no' and request.created_at between :startDate and :endDate) " +
-                "as withoutConversion)  " +
-                "from CorrectRequest request " +
-                "where request.uid.record_id in (:record_ids) and request.isConversion ='yes' and request.created_at between :startDate and :endDate");
-
-        query.setParameterList("record_ids", record_ids);
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date start = format.parse(startDate + " 00:00:00");
-        Date end = format.parse(endDate + " 23:59:59");
-        query.setTimestamp("startDate", start);
-        query.setTimestamp("endDate", end);
+        if (startDate != null && endDate != null) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date start = format.parse(startDate + " 00:00:00");
+            Date end = format.parse(endDate + " 23:59:59");
+            query.setTimestamp("startDate", start);
+            query.setTimestamp("endDate", end);
+        }
 
         return (Map<String, Long>) query.getSingleResult();
     }

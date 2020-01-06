@@ -66,13 +66,10 @@ public class ExcelAnalyticsController {
 
             Map<String, Long> clickThroughRate;
             String averagePricePerClick;
-            if (startDate == null) {
-                clickThroughRate = clickThroughRateService.get(ids);
-                averagePricePerClick = averagePricePerClickService.get(ids);
-            } else {
-                clickThroughRate = clickThroughRateService.get(ids, startDate, endDate);
-                averagePricePerClick = averagePricePerClickService.get(ids, startDate, endDate);
-            }
+
+            clickThroughRate = clickThroughRateService.get(ids, startDate, endDate);
+            averagePricePerClick = averagePricePerClickService.get(ids, startDate, endDate);
+
             pageValues.put("withConversion", clickThroughRate.get("withConversion"));
             pageValues.put("withoutConversion", clickThroughRate.get("withoutConversion"));
             pageValues.put("averagePricePerClick", averagePricePerClick);

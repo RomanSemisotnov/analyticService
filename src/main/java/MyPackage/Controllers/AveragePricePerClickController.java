@@ -23,10 +23,6 @@ public class AveragePricePerClickController {
         List<Integer> record_ids = new ArrayList<>();
         record_ids.add(record_id);
 
-        if (startDate == null) {
-            return averagePricePerClickService.get(record_ids);
-        }
-
         return averagePricePerClickService.get(record_ids, startDate, endDate);
     }
 
