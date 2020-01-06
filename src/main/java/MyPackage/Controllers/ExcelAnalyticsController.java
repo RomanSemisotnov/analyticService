@@ -38,47 +38,47 @@ public class ExcelAnalyticsController {
                                  @RequestParam(name = "startDate", required = false) String startDate,
                                  @RequestParam(name = "endDate", required = false) String endDate) throws Exception {
 
-        List<Integer> ids;
         Map<String, Object> pageValues;
         List<Map<String, Object>> pages = new ArrayList<>();
         for (Integer id : record_ids) {
             pageValues = new HashMap<>();
-            ids = new ArrayList<>();
-            ids.add(id);
 
             pageValues.put("name", "Партия " + id);
 
-            Map<String, Long> deviceStatistics = deviceAnalyticService.all(ids, startDate, endDate);
+            Map<String, Long> deviceStatistics = deviceAnalyticService.all(id, startDate, endDate);
             pageValues.put("commonCount", deviceStatistics.get("commonCount"));
             pageValues.put("androidCount", deviceStatistics.get("androidCount"));
             pageValues.put("iosCount", deviceStatistics.get("iosCount"));
             pageValues.put("unknownCount", deviceStatistics.get("unknownCount"));
 
-            Map<String, Long> deviceRating = deviceAnalyticService.getRating(ids, startDate, endDate);
+            Map<String, Long> deviceRating = deviceAnalyticService.getRating(id, startDate, endDate);
             pageValues.put("androidAndIosCount", deviceRating.get("androidAndIosCount"));
             pageValues.put("onlyIosCount", deviceRating.get("onlyIosCount"));
             pageValues.put("onlyAndroidCount", deviceRating.get("onlyAndroidCount"));
 
-            Long openCount = uidAnalyticService.getOpenCount(ids, startDate, endDate);
-            Long notOpenCount = uidAnalyticService.getNotOpenCount(ids, startDate, endDate);
+            Long openCount = uidAnalyticService.getOpenCount(id, startDate, endDate);
+            Long notOpenCount = uidAnalyticService.getNotOpenCount(id, startDate, endDate);
             pageValues.put("openCount", openCount);
             pageValues.put("notOpenCount", notOpenCount);
 
             Map<String, Long> clickThroughRate;
             String averagePricePerClick;
 
-            clickThroughRate = clickThroughRateService.get(ids, startDate, endDate);
-            averagePricePerClick = averagePricePerClickService.get(ids, startDate, endDate);
+            clickThroughRate = clickThroughRateService.get(id, startDate, endDate);
+            averagePricePerClick = averagePricePerClickService.get(id, startDate, endDate);
 
             pageValues.put("withConversion", clickThroughRate.get("withConversion"));
             pageValues.put("withoutConversion", clickThroughRate.get("withoutConversion"));
             pageValues.put("averagePricePerClick", averagePricePerClick);
 
-            List<Map<String, Object>> uidsStatistics = deviceAnalyticService.get(ids, startDate, endDate);
+            List<Map<String, Object>> uidsStatistics = deviceAnalyticService.get(id, startDate, endDate);
             pageValues.put("uidsStatistics", uidsStatistics);
 
             pages.add(pageValues);
         }
+
+        Comparator<Map<String, Object>> pageSort = Comparator.comparing(map -> ((String) map.get("name")));
+        pages.sort(pageSort);
 
         model.addAttribute("pages", pages);
 

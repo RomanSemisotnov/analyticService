@@ -69,7 +69,7 @@ public class ExcelAnalyticView extends AbstractXlsView {
             row.createCell(7).setCellValue("Средняя цена клика");
             row = sheet.createRow(currentRow++);
             row.createCell(0).setCellValue("Открыто: " + openCount);
-            row.createCell(4).setCellValue(withConversion + "/" + (withConversion / (withConversion + withoutConversion)) +
+            row.createCell(4).setCellValue(withConversion + "/" + (withConversion + withoutConversion) +
                     "( " + (withConversion / (withConversion + withoutConversion) * 100) + "% )");
             row.createCell(7).setCellValue(averagePricePerClick);
             row = sheet.createRow(currentRow++);

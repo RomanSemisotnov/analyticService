@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -21,10 +19,7 @@ public class ClickThroughRateController {
                                  @RequestParam(name = "startDate", required = false) String startDate,
                                  @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 
-        List<Integer> record_ids = new ArrayList<>();
-        record_ids.add(record_id);
-
-        return clickThroughRateService.get(record_ids, startDate, endDate);
+        return clickThroughRateService.get(record_id, startDate, endDate);
     }
 
 }

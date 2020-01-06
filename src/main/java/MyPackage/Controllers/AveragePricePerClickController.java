@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/analytics/averagePricePerClick")
@@ -20,10 +18,7 @@ public class AveragePricePerClickController {
                       @RequestParam(name = "startDate", required = false) String startDate,
                       @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 
-        List<Integer> record_ids = new ArrayList<>();
-        record_ids.add(record_id);
-
-        return averagePricePerClickService.get(record_ids, startDate, endDate);
+        return averagePricePerClickService.get(record_id, startDate, endDate);
     }
 
 }

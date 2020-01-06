@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/analytics/uids")
@@ -20,10 +18,7 @@ public class UidAnalyticsController {
                              @RequestParam(name = "startDate", required = false) String startDate,
                              @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 
-        List<Integer> record_ids = new ArrayList<>();
-        record_ids.add(record_id);
-
-        return uidAnalyticService.getOpenCount(record_ids, startDate, endDate);
+        return uidAnalyticService.getOpenCount(record_id, startDate, endDate);
     }
 
     @GetMapping("/{record_id}/notOpenCount")
@@ -31,10 +26,7 @@ public class UidAnalyticsController {
                                 @RequestParam(name = "startDate", required = false) String startDate,
                                 @RequestParam(name = "endDate", required = false) String endDate) throws ParseException {
 
-        List<Integer> record_ids = new ArrayList<>();
-        record_ids.add(record_id);
-
-        return uidAnalyticService.getNotOpenCount(record_ids, startDate, endDate);
+        return uidAnalyticService.getNotOpenCount(record_id, startDate, endDate);
     }
 
 }

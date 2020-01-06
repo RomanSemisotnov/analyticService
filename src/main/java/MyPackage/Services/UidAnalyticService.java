@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,18 @@ public class UidAnalyticService {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    public Long getOpenCount(int record_id, String startDate, String endDate) throws ParseException {
+        List<Integer> list = new ArrayList<>();
+        list.add(record_id);
+        return getOpenCount(list, startDate, endDate);
+    }
+
+    public Long getNotOpenCount(int record_id, String startDate, String endDate) throws ParseException {
+        List<Integer> list = new ArrayList<>();
+        list.add(record_id);
+        return getNotOpenCount(list, startDate, endDate);
+    }
 
     public Long getOpenCount(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();

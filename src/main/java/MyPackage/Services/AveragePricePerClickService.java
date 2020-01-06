@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,12 @@ public class AveragePricePerClickService {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    public String get(int record_id, String startDate, String endDate) throws ParseException {
+        List<Integer> list = new ArrayList<>();
+        list.add(record_id);
+        return get(list, startDate, endDate);
+    }
 
     public String get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();

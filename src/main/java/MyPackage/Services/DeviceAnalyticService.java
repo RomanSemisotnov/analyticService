@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,24 @@ public class DeviceAnalyticService {
 
     @Resource(name = "getUnknown")
     private List<String> unknown;
+
+    public Map<String, Long> getRating(int record_id, String startDate, String endDate) throws ParseException {
+        List<Integer> list = new ArrayList<>();
+        list.add(record_id);
+        return getRating(list, startDate, endDate);
+    }
+
+    public Map<String, Long> all(int record_id, String startDate, String endDate) throws ParseException {
+        List<Integer> list = new ArrayList<>();
+        list.add(record_id);
+        return all(list, startDate, endDate);
+    }
+
+    public List<Map<String, Object>> get(int record_id, String startDate, String endDate) throws ParseException {
+        List<Integer> list = new ArrayList<>();
+        list.add(record_id);
+        return get(list, startDate, endDate);
+    }
 
     public Map<String, Long> getRating(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();

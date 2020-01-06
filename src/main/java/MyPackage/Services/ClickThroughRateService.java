@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,12 @@ public class ClickThroughRateService {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    public Map<String, Long> get(int record_id, String startDate, String endDate) throws ParseException {
+        List<Integer> list = new ArrayList<>();
+        list.add(record_id);
+        return get(list, startDate, endDate);
+    }
 
     public Map<String, Long> get(List<Integer> record_ids, String startDate, String endDate) throws ParseException {
         Session session = sessionFactory.getCurrentSession();
