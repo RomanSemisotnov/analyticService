@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e7b9891-75b6-45f1-b5e3-7de94e401fbf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Controllers/Test1Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyPackage/Views/ExcelAnalyticView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyPackage/Views/ExcelAnalyticView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MyPackage/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MyPackage/Application.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -163,7 +168,29 @@
       <workItem from="1578272097142" duration="876000" />
       <workItem from="1578274576223" duration="27000" />
       <workItem from="1578276019261" duration="345000" />
-      <workItem from="1578277538700" duration="5534000" />
+      <workItem from="1578277538700" duration="6354000" />
+      <workItem from="1578290170714" duration="1357000" />
+      <workItem from="1578306072458" duration="232000" />
+      <workItem from="1578322664201" duration="600000" />
+      <workItem from="1578371647782" duration="425000" />
+      <workItem from="1578373103557" duration="3117000" />
+      <workItem from="1578389220069" duration="1896000" />
+      <workItem from="1578416951518" duration="3283000" />
+      <workItem from="1578426040566" duration="3064000" />
+      <workItem from="1578503760877" duration="6449000" />
+      <workItem from="1578600587925" duration="78000" />
+      <workItem from="1578600746429" duration="1243000" />
+      <workItem from="1578654591773" duration="28000" />
+      <workItem from="1578654734609" duration="9000" />
+      <workItem from="1578754051401" duration="194000" />
+      <workItem from="1578935039481" duration="13000" />
+      <workItem from="1579003307982" duration="56000" />
+      <workItem from="1579021344124" duration="1163000" />
+      <workItem from="1579022521307" duration="37000" />
+      <workItem from="1579022773862" duration="327000" />
+      <workItem from="1579095193201" duration="1195000" />
+      <workItem from="1579420802163" duration="27000" />
+      <workItem from="1579854798880" duration="299000" />
     </task>
     <task id="LOCAL-00001" summary="qwe">
       <created>1576088467396</created>
@@ -368,7 +395,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578282528369</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="qwe">
+      <created>1578283304404</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1578283304404</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

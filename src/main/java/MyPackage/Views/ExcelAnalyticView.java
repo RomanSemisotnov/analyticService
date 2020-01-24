@@ -71,9 +71,9 @@ public class ExcelAnalyticView extends AbstractXlsView {
             row = sheet.createRow(currentRow++);
             row.createCell(0).setCellValue("Открыто: " + openCount);
 
-            double persent=100.00 * withConversion / (withConversion + withoutConversion);
+            double persent = 100.00 * withConversion / (withConversion + withoutConversion);
             DecimalFormat df = new DecimalFormat("#.##");
-            
+
             row.createCell(4).setCellValue(withConversion + "/" + (withConversion + withoutConversion) +
                     "( " + Double.valueOf(df.format(persent)) + "% )");
             row.createCell(7).setCellValue(averagePricePerClick);
